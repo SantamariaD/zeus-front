@@ -15,9 +15,11 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { SharedModule } from 'src/share/shared.module';
-import { appReducers } from 'src/state';
+import { SharedModule } from 'src/app/share/shared.module';
+import { appReducers } from 'src/app/state';
 import { environment } from 'src/environments/environment';
+import { ComponentesModule } from './web/componentes/componentes.module';
+import { PaginasModule } from './web/paginas/paginas.module';
 
 registerLocaleData(en);
 
@@ -30,9 +32,11 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     AppRoutingModule,
     IconsProviderModule,
+    PaginasModule,
     NzLayoutModule,
     NzMenuModule,
     SharedModule,
+    ComponentesModule,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictActionImmutability: false,

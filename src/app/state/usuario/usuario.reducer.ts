@@ -1,12 +1,15 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { UsuarioInterface } from "src/app/interface/usuario";
+import { UsuarioInterface } from "src/app/web/interface/usuario";
 import { guardarUsuario } from "./usuario.action";
 
 
 const estadoInicial: UsuarioInterface = {
-    nombre: '',
+    id: 0,
+    name: '',
     email: '',
-    nickName: ''
+    username: '',
+    rol: '',
+    login: false
 }
 
 const usuarioReducer = createReducer(
