@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UsuarioInterface } from 'src/app/interface/usuario';
+import { UsuarioInterface } from 'src/app/web/interface/usuario';
 
 const GUARDAR_USUARIO = '[Usuario] Guarda la información del usuario';
 
