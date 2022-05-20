@@ -1,1 +1,59 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="navbar__contenido">
+    <p class="navbar__contenido--username"></p>
+  </div>
+  <div class="navbar__contenido">
+    <p class="navbar__contenido--username"></p>
+  </div>
+  <div class="navbar__contenido">
+    <p class="navbar__contenido--username">
+      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        <nz-avatar
+          class="navbar__contenido--username__avatar"
+          nz-page-header-avatar
+          nzSrc="https://avatars0.githubusercontent.com/u/22736418?s=88&v=4"
+        ></nz-avatar>
+        Diego
+        <i nz-icon nzType="down"></i>
+      </a>
+      <nz-dropdown-menu
+        class="navbar__contenido--username__dropmenu"
+        #menu="nzDropdownMenu"
+      >
+        <ul class="m-t-10" nz-menu nzSelectable>
+          <li class="navbar__contenido--username__dropmenu--item" nz-menu-item >
+            1st menu item
+          </li>
+          <li class="navbar__contenido--username__dropmenu--item" nz-menu-item >
+            2nd menu item
+          </li>
+          <li class="navbar__contenido--username__dropmenu--item" nz-menu-item >
+            3rd menu item
+          </li>
+          <li class="navbar__contenido--username__dropmenu--item" nz-menu-item (click)="cerrarSesion()">
+            <i class="m-r-5" nz-icon nzType="logout" nzTheme="outline"></i
+            >Cerrar sesión
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </p>
+    <i
+      class="cursor-pointer navbar__contenido--notificaciones"
+      nz-icon
+      nzType="bell"
+      nzTheme="outline"
+    ></i>
+    <i
+      class="cursor-pointer navbar__contenido--biblioteca"
+      nz-icon
+      nzType="book"
+      nzTheme="outline"
+    ></i>
+    <i
+      class="cursor-pointer navbar__contenido--mensajes"
+      nz-icon
+      nzType="message"
+      nzTheme="outline"
+    ></i>
+  </div>
+</nav>

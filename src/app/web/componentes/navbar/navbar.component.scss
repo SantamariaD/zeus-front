@@ -1,0 +1,40 @@
+@import "../../../../styles.scss";
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  &__contenido {
+    width: 99%;
+    height: 64px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &--username {
+        width: 25%;
+      &__dropmenu {
+        &--item {
+          &:hover {
+            background-color: rgb(230, 230, 230);
+          }
+        }
+      }
+    }
+    &--notificaciones {
+        font-size: 20px;
+        width: 10%;
+    }
+    &--biblioteca {
+        font-size: 20px;
+        width: 10%;
+    }
+    &--mensajes {
+        font-size: 20px;
+        width: 10%;
+    }
+  }
+}

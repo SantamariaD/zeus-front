@@ -3,17 +3,29 @@
 @import "./src/app/share/estilos/clases";
 @import "./src/app/share/estilos/mixins";
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+div {
+  margin: 0;
+}
+
 .ant-spin-spinning {
-    margin-top: 100px;
-  }
-  
-  .ant-spin-lg .ant-spin-dot i {
-    width: 54px;
-    height: 54px;
-    margin: 20px;
-  }
-  
-  .ant-spin-text {
-    margin-top: 60px;
-    font-size: 20px;
-  }
+  margin-top: 100px;
+}
+
+.ant-spin-lg .ant-spin-dot i {
+  width: 54px;
+  height: 54px;
+  margin: 20px;
+}
+
+.ant-spin-text {
+  margin-top: 60px;
+  font-size: 20px;
+}
