@@ -28,7 +28,7 @@
     border-radius: 50%;
   }
 }
-ng
+
 ::placeholder {
   color: white;
 }
@@ -39,7 +39,9 @@ ng
   border-radius: 20px;
   font-size: 15px;
   background: transparent;
+  &:valid {}
   &:hover {
+    background: transparent;
     border-color: $primary;
     color: white;
   }

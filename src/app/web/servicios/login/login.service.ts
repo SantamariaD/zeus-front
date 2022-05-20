@@ -42,7 +42,7 @@ export class LoginService {
       );
   }
 
-  cerrarSesion(): Observable<CerrarSesioninterface> {
+  cerrarSesionService(): Observable<CerrarSesioninterface> {
     const url = '/auth/logout';
     return this.http.peticion<CerrarSesioninterface>('POST', url);
   }

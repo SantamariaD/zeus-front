@@ -7,8 +7,8 @@
 }
 
 .color-backgorund-brand-primary {
-    background: $color-brand-primary;
-  }
+  background: $color-brand-primary;
+}
 
 /*** Iconos ***/
 .icon {
@@ -30,6 +30,18 @@
 /*** Text ***/
 .t-a-c {
   text-align: center;
+}
+
+/*** Contenedores ***/
+.contenedor-principal-pagina {
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  height: 72vh;
+  background-color: white;
+  @media only screen and (min-height: 665px) {
+    height: 82vh;
+  }
 }
 /*** Cursor ***/
 .cursor-pointer {
