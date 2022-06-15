@@ -1,3 +1,4 @@
+@import './mixins.scss';
 /*** REUSABLE CLASSES ***/
 
 /*** Colors ***/
@@ -39,6 +40,7 @@
   width: 100%;
   height: 72vh;
   background-color: white;
+  @include shadows(base);
   @media only screen and (min-height: 665px) {
     height: 82vh;
   }

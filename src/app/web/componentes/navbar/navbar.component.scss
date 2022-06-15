@@ -3,8 +3,8 @@
 .navbar {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: 100%;
   &__contenido {
     width: 99%;
@@ -12,16 +12,20 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    align-content: flex-end;
     &--username {
-        width: 25%;
       &__dropmenu {
+        width: 100%;
         &--item {
           &:hover {
             background-color: rgb(230, 230, 230);
           }
         }
+      }
+      &--text {
+        overflow: hidden;
       }
     }
     &--notificaciones {
