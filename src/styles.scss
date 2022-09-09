@@ -3,6 +3,7 @@
 @import "./src/app/share/estilos/clases";
 @import "./src/app/share/estilos/mixins";
 
+
 h1,
 h2,
 h3,
@@ -16,7 +17,7 @@ div {
 }
 
 .ant-spin-spinning {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .ant-spin-lg .ant-spin-dot i {
@@ -29,3 +30,12 @@ div {
   margin-top: 60px;
   font-size: 20px;
 }
+
+.ant-tabs-nav-wrap {
+  justify-content: center;
+}
+
+.ant-tabs-tab {
+  font-size: 18px;
+}
+

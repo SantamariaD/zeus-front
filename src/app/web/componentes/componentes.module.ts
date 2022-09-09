@@ -4,6 +4,7 @@ import { SiderComponent } from './sider/sider.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from 'src/app/share/shared.module';
+import { ContenedorRoutingModule } from '../paginas/contenedor/contenedor-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/share/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ContenedorRoutingModule
   ],
   exports: [
     SiderComponent,

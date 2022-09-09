@@ -8,9 +8,13 @@ import { LoginService } from '../../servicios/login/login.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  userName = '';
+
   constructor(private loginService: LoginService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userName = localStorage.getItem('username') || '';
+  }
 
   cerrarSesion() {
     if (!localStorage.getItem('token')) return console.log('No hay token');

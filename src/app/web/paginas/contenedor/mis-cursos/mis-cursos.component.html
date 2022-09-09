@@ -1,0 +1,29 @@
+<div class="notas-cursos contenedor-principal-pagina">
+    <nz-tabset
+      class="notas-cursos__tabs"
+      style="height: 100%"
+      [nzTabPosition]="'top'"
+    >
+      <nz-tab
+        class="notas-cursos__tabs--text"
+        nzTitle="Cursos"
+        [nzDisabled]="false"
+      >
+        <app-mostrar-cursos></app-mostrar-cursos>
+      </nz-tab>
+      <nz-tab
+        class="notas-cursos__tabs--text"
+        nzTitle="Crear curso"
+        [nzDisabled]="false"
+      >
+        <app-crear-cursos></app-crear-cursos>
+      </nz-tab>
+      <nz-tab
+        class="notas-cursos__tabs--text"
+        nzTitle="Editar curso"
+        [nzDisabled]="false"
+      >
+        <app-editar-cursos></app-editar-cursos>
+      </nz-tab>
+    </nz-tabset>
+  </div>
