@@ -5,24 +5,21 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from 'src/app/share/shared.module';
 import { ContenedorRoutingModule } from '../paginas/contenedor/contenedor-routing.module';
-
-
+import { SeccionesCabeceraComponent } from './secciones-cabecera/secciones-cabecera.component';
 
 @NgModule({
   declarations: [
     SiderComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    SeccionesCabeceraComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ContenedorRoutingModule
-  ],
+  imports: [CommonModule, SharedModule, ContenedorRoutingModule],
   exports: [
     SiderComponent,
     FooterComponent,
-    NavbarComponent
-  ]
+    NavbarComponent,
+    SeccionesCabeceraComponent,
+  ],
 })
-export class ComponentesModule { }
+export class ComponentesModule {}

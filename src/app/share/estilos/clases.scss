@@ -33,6 +33,20 @@
   text-align: center;
 }
 
+/*** Botones ***/
+.boton-cabecera {
+  height: 70px;
+  width: 150px;
+  background: none;
+  border: solid 1px $color-brand-primary;
+  font-size: 15px;
+  color: #00203e;
+  &:hover {
+      background: #00203e;
+      color: white;
+  }
+}
+
 /*** Contenedores ***/
 .contenedor-principal-pagina {
   margin: 0;

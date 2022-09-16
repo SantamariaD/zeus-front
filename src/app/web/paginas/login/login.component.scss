@@ -38,12 +38,10 @@
   border: 2px solid;
   border-radius: 20px;
   font-size: 15px;
-  background: transparent;
-  &:valid {}
   &:hover {
     background: transparent;
     border-color: $primary;
-    color: white;
+    color: none;
   }
 }
 
@@ -87,4 +85,5 @@
 
 input {
   color: white!important;
+  background: none!important;
 }

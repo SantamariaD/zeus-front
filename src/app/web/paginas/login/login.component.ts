@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             'username',
             respuestalogin.payload.usuario.username
           );
-          this.store.dispatch(
+           this.store.dispatch(
             guardarUsuario({ usuario: respuestalogin.payload.usuario })
           );
           this.router.navigate(['/home']);

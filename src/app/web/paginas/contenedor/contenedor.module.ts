@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContenedorComponent } from './contenedor.component';
 import { MisArchivosComponent } from './mis-archivos/mis-archivos.component';
 import { ContenedorRoutingModule } from './contenedor-routing.module';
 import { SharedModule } from 'src/app/share/shared.module';
@@ -10,7 +9,7 @@ import { MisNotasModule } from './mis-notas/mis-notas.module';
 import { MisTareasModule } from './mis-tareas/mis-tareas.module';
 
 @NgModule({
-  declarations: [ContenedorComponent],
+  declarations: [],
   imports: [
     CommonModule,
     ContenedorRoutingModule,
@@ -20,6 +19,6 @@ import { MisTareasModule } from './mis-tareas/mis-tareas.module';
     MisNotasModule,
     MisTareasModule,
   ],
-  exports: [ContenedorComponent, MisArchivosComponent],
+  exports: [MisArchivosComponent],
 })
 export class ContenedorModule {}

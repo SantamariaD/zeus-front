@@ -1,29 +1,13 @@
-<div class="notas-cursos contenedor-principal-pagina">
-    <nz-tabset
-      class="notas-cursos__tabs"
-      style="height: 100%"
-      [nzTabPosition]="'top'"
-    >
-      <nz-tab
-        class="notas-cursos__tabs--text"
-        nzTitle="Notas"
-        [nzDisabled]="false"
-      >
-        Notas
-      </nz-tab>
-      <nz-tab
-        class="notas-cursos__tabs--text"
-        nzTitle="Crear nota"
-        [nzDisabled]="false"
-      >
-        Crear nota
-      </nz-tab>
-      <nz-tab
-        class="notas-cursos__tabs--text"
-        nzTitle="Editar nota"
-        [nzDisabled]="false"
-      >
-        Editar notas
-      </nz-tab>
-    </nz-tabset>
+<section class="notas contenedor-principal-pagina">
+  <div class="notas__secciones-cabecera">
+    <app-secciones-cabecera
+      [secciones]="[
+        { texto: 'fgerfgerfdgerfdgdfgsdfa', seleccionado: true },
+        { texto: 'prueba 3', seleccionado: false },
+        { texto: 'prueba', seleccionado: false }
+      ]"
+      (seleccionadoClick)="seleccionadoClick($event)"
+    ></app-secciones-cabecera>
+
   </div>
+</section>
