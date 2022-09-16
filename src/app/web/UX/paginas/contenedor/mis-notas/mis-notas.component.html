@@ -1,0 +1,25 @@
+<section class="notas contenedor-principal-pagina">
+  <div class="notas__secciones-cabecera">
+    <app-secciones-cabecera
+      [secciones]="[
+        { texto: 'Notas', seleccionado: true },
+        { texto: 'Crear nota', seleccionado: false }
+      ]"
+      (seleccionadoClick)="seleccionadoClick($event)"
+    ></app-secciones-cabecera>
+  </div>
+  <div class="notas__secciones-contenido">
+    <div
+      class="notas__secciones-contenido__mostrar"
+      *ngIf="seccionSeleccionada === 'notas'"
+    >
+      <app-mostrar></app-mostrar>
+    </div>
+    <div
+      class="notas__secciones-contenido__crear"
+      *ngIf="seccionSeleccionada === 'crear nota'"
+    >
+      <app-crear></app-crear>
+    </div>
+  </div>
+</section>

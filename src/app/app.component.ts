@@ -1,9 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  selectBanderaCargandoPeticion,
-  selectBanderaLoginPeticion,
-} from 'src/app/state';
+import { selectBanderaCargandoPeticion } from './web/informacion/state';
 
 @Component({
   selector: 'app-root',

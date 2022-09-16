@@ -16,10 +16,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharedModule } from 'src/app/share/shared.module';
-import { appReducers } from 'src/app/state';
 import { environment } from 'src/environments/environment';
-import { ComponentesModule } from './web/componentes/componentes.module';
-import { PaginasModule } from './web/paginas/paginas.module';
+import { ComponentesModule } from './web/UX/componentes/componentes.module';
+import { PaginasModule } from './web/UX/paginas/paginas.module';
+import { appReducers } from './web/informacion/state';
 
 registerLocaleData(en);
 
