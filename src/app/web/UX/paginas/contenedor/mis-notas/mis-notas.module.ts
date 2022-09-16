@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/share/shared.module';
+import { SharedModule } from 'src/app/web/informacion/utils/shared.module';
 import { MisNotasComponent } from './mis-notas.component';
 import { CrearComponent } from './crear/crear.component';
 import { MostrarComponent } from './mostrar/mostrar.component';

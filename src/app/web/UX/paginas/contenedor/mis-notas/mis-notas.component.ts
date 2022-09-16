@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NotasService } from 'src/app/web/informacion/servicios/notas/notas.service';
 import { HttpClientServiceInterface } from '../../../../informacion/interface/httpService';
 import { NotasConsultaTodoInterface } from '../../../../informacion/interface/notas';
 
@@ -11,7 +10,7 @@ import { NotasConsultaTodoInterface } from '../../../../informacion/interface/no
 export class MisNotasComponent implements OnInit {
   seccionSeleccionada: string = 'notas';
 
-  constructor(private notasService: NotasService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.consultarNotas();
@@ -22,14 +21,6 @@ export class MisNotasComponent implements OnInit {
   }
 
   consultarNotas(): void {
-    this.notasService
-      .consultarNotasService()
-      .subscribe(
-        (
-          respuestaNotas: HttpClientServiceInterface<NotasConsultaTodoInterface>
-        ) => {
-          console.log(respuestaNotas);
-        }
-      );
+    
   }
 }
