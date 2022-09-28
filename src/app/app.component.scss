@@ -17,10 +17,11 @@ nz-header {
   padding: 0;
   width: 100%;
   z-index: 2;
+  position: fixed;
 }
 
 .app-header {
-  position: relative;
+  width: 100%;
   height: 64px;
   background: #fff;
   @include shadows(modal)
@@ -28,12 +29,13 @@ nz-header {
 
 .nz-content-sider {
   margin: 24px;
-  background: #fff;
+  background: #f0f2f5;
 }
 
 .inner-content {
   background: #f2f2f2d9;
   height: 100%;
+  margin-top: 74px;
 }
 
 .spinner {
@@ -46,4 +48,11 @@ nz-header {
   display: flex;
   align-items:center;
   justify-content:center;
+}
+
+
+@media (max-width: 430px) {
+  .menu-sidebar {
+    display: none;
+  }
 }

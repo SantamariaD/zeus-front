@@ -7,6 +7,7 @@ import { ContenedorRoutingModule } from '../paginas/contenedor/contenedor-routin
 import { SeccionesCabeceraComponent } from './secciones-cabecera/secciones-cabecera.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FeedbackModule } from './feedback/feedback.module';
+import { CardUnoComponent } from './card-uno/card-uno.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FeedbackModule } from './feedback/feedback.module';
     FooterComponent,
     NavbarComponent,
     SeccionesCabeceraComponent,
+    CardUnoComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { FeedbackModule } from './feedback/feedback.module';
     FooterComponent,
     NavbarComponent,
     SeccionesCabeceraComponent,
+    CardUnoComponent,
   ],
 })
 export class ComponentesModule {}

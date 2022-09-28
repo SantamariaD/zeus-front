@@ -1,0 +1,7 @@
+@import "../../../../../styles.scss";
+
+.card-uno{
+    width: 320px;
+    height: 200px;
+    @include shadows(modal);
+}
