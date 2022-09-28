@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MisNotasComponent } from './mis-notas.component';
+import { CrearNotaTemplateComponent } from './crear-nota-template.component';
 
-describe('MisNotasComponent', () => {
-  let component: MisNotasComponent;
-  let fixture: ComponentFixture<MisNotasComponent>;
+describe('CrearNotaTemplateComponent', () => {
+  let component: CrearNotaTemplateComponent;
+  let fixture: ComponentFixture<CrearNotaTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MisNotasComponent ]
+      declarations: [ CrearNotaTemplateComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MisNotasComponent);
+    fixture = TestBed.createComponent(CrearNotaTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

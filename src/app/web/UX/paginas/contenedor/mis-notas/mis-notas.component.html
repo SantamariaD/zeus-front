@@ -13,13 +13,13 @@
       class="notas__secciones-contenido__mostrar"
       *ngIf="seccionSeleccionada === 'notas'"
     >
-      <app-mostrar></app-mostrar>
+      <app-mostrar-nota-template></app-mostrar-nota-template>
     </div>
     <div
       class="notas__secciones-contenido__crear"
       *ngIf="seccionSeleccionada === 'crear nota'"
     >
-      <app-crear></app-crear>
+      <app-crear-nota-template></app-crear-nota-template>
     </div>
   </div>
 </section>

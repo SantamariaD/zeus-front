@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClientServiceInterface } from 'src/app/web/informacion/interface/httpService';
 import { NotasConsultaTodoInterface } from 'src/app/web/informacion/interface/notas';
-import { HttpclientService } from '../httpService/http-service.service';
+import { HttpclientService } from '../../servicios/httpService/http-service.service';
 
 @Injectable({
   providedIn: 'root',

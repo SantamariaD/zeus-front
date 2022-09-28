@@ -8,7 +8,7 @@ export class MensajesAdministrador {
 
   constructor(private mensaje: NzMessageService) { }
 
-  ejecutar(evento: string, mensaje: string): void {
+  ejecutarMensaje(evento: string, mensaje: string): void {
     this.mensaje.create(evento, mensaje);
   }
 }
