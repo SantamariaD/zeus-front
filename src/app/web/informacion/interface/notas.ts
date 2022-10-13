@@ -6,3 +6,10 @@ export interface NotasConsultaTodoInterface {
     created_at: string;
     updated_at: string;
 }
+
+export interface NotasConponentInterface {
+    tema: string;
+    nombreArchivo: string;
+    archivoBinario: string;
+    tipoArchivo: string;
+}

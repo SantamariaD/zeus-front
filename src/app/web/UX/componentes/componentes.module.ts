@@ -8,6 +8,9 @@ import { SeccionesCabeceraComponent } from './secciones-cabecera/secciones-cabec
 import { NavbarComponent } from './navbar/navbar.component';
 import { FeedbackModule } from './feedback/feedback.module';
 import { CardUnoComponent } from './card-uno/card-uno.component';
+import { GeneradorPdfComponent } from './generador-pdf/generador-pdf.component';
+import { EditorTextoComponent } from './editor-texto/editor-texto.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,12 +19,15 @@ import { CardUnoComponent } from './card-uno/card-uno.component';
     NavbarComponent,
     SeccionesCabeceraComponent,
     CardUnoComponent,
+    GeneradorPdfComponent,
+    EditorTextoComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     ContenedorRoutingModule,
     FeedbackModule,
+    FormsModule,
   ],
   exports: [
     SiderComponent,
@@ -29,6 +35,8 @@ import { CardUnoComponent } from './card-uno/card-uno.component';
     NavbarComponent,
     SeccionesCabeceraComponent,
     CardUnoComponent,
+    GeneradorPdfComponent,
+    EditorTextoComponent,
   ],
 })
 export class ComponentesModule {}
