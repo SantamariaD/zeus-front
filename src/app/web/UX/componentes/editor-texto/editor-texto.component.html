@@ -1,1 +1,12 @@
-huevos
+<div class="editor-texto">
+  <quill-editor
+    class="editor-texto__app"
+    [formControl]="formText"
+    [styles]="{ height: '520px'}"
+    [placeholder]="''"
+  >
+  </quill-editor>
+  <button (click)="generarPdf()">Enviar</button>
+  <button (click)="abrirPdf()">Visualizar PDF</button>
+</div>
+

@@ -2,6 +2,8 @@
 @import "./src/app/web/UX/estilos/variables";
 @import "./src/app/web/UX/estilos/clases";
 @import "./src/app/web/UX/estilos/mixins";
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
 
 h1,
 h2,

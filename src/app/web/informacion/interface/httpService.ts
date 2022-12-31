@@ -7,3 +7,8 @@ export interface HttpClientServiceInterface<T> {
 export interface CargandoPeticionInterface {
   cargandoPeticion: boolean;
 }
+
+export interface InformacionFecha {
+  created_at: string;
+  updated_at: string;
+}

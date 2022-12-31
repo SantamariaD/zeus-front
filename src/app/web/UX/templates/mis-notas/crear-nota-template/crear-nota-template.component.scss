@@ -1,0 +1,16 @@
+.form-nota {
+  width: 50%;
+  height: 100%;
+  margin: 40px auto;
+  padding: 50px;
+  border: 1px solid rgb(231, 231, 231);
+  -webkit-box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+  &__app {
+    width: 100% !important;
+  }
+  &__boton {
+    width: 100%;
+  }
+}

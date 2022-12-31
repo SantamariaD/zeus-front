@@ -1,2 +1,65 @@
-<app-generador-pdf></app-generador-pdf>
-<app-editor-texto></app-editor-texto>
+<form nz-form [formGroup]="notaForm" class="form-nota">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="star">
+        <nz-select
+          formControlName="idAreaConocimiento"
+          nzPlaceHolder="Área de conocimiento"
+          (ngModelChange)="habilitarSubareas()"
+        >
+          <nz-option
+            *ngFor="let area of areas"
+            [nzValue]="area.id"
+            [nzLabel]="area.area"
+          ></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="apartment">
+        <nz-select
+          formControlName="idSubarea"
+          nzPlaceHolder="Subárea de conocimiento"
+          [nzDisabled]="!habilitarSubarea"
+          (ngModelChange)="habilitarTemaInput()"
+        >
+          <nz-option
+            *ngFor="let subarea of subareas"
+            [nzValue]="subarea.id"
+            [nzLabel]="subarea.subarea"
+          ></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="file-text">
+        <input
+          nz-input
+          type="text"
+          placeholder="Tema"
+          formControlName="tema"
+          (ngModelChange)="habilitarBotonGuardar()"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button
+    nz-button
+    class="login-form-button login-form-margin form-nota__boton"
+    [nzType]="'primary'"
+    [disabled]="!habilitarBoton"
+    (click)="guardarNota()"
+  >
+    Crear Nota
+  </button>
+</form>
+
+<!-- <app-editor-texto
+  *ngIf="mostrarEditor"
+  (infoPDF)="infoPDF($event)"
+></app-editor-texto> -->

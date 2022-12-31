@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         (respuestalogin: HttpClientServiceInterface<LoginServiceInterface>) => {
           localStorage.setItem('token', respuestalogin.payload.token);
           localStorage.setItem('rol', respuestalogin.payload.usuario.rol);
+          localStorage.setItem('id', respuestalogin.payload.usuario.id.toString());
           localStorage.setItem(
             'username',
             respuestalogin.payload.usuario.username

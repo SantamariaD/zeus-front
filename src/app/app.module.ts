@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment';
 import { ComponentesModule } from './web/UX/componentes/componentes.module';
 import { PaginasModule } from './web/UX/paginas/paginas.module';
 import { appReducers } from './web/informacion/state';
+import { QuillModule } from 'ngx-quill';
 
 registerLocaleData(en);
 
@@ -37,6 +38,7 @@ registerLocaleData(en);
     NzMenuModule,
     SharedModule,
     ComponentesModule,
+    QuillModule.forRoot(),
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictActionImmutability: false,

@@ -1,3 +1,5 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SiderComponent } from './sider/sider.component';
 import { FooterComponent } from './footer/footer.component';
@@ -9,8 +11,7 @@ import { FeedbackModule } from './feedback/feedback.module';
 import { CardUnoComponent } from './card-uno/card-uno.component';
 import { GeneradorPdfComponent } from './generador-pdf/generador-pdf.component';
 import { EditorTextoComponent } from './editor-texto/editor-texto.component';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { QuillModule } from 'ngx-quill'
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { NgModule } from '@angular/core';
     ContenedorRoutingModule,
     FeedbackModule,
     FormsModule,
+    ReactiveFormsModule,
+    QuillModule ,
   ],
   exports: [
     SiderComponent,

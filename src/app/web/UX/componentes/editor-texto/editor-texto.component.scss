@@ -1,1 +1,10 @@
 @import '../../../../../styles.scss';
+
+.editor-texto {
+    width: 95%;
+    height: 100%;
+    margin: 20px auto;
+    &__app {
+        width: 100%!important;
+    }
+}

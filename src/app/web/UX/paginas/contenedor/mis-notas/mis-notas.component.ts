@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientServiceInterface } from '../../../../informacion/interface/httpService';
-import { NotasConsultaTodoInterface } from '../../../../informacion/interface/notas';
 
 @Component({
   selector: 'app-mis-notas',
@@ -9,6 +8,11 @@ import { NotasConsultaTodoInterface } from '../../../../informacion/interface/no
 })
 export class MisNotasComponent implements OnInit {
   seccionSeleccionada: string = 'notas';
+  secciones = [
+    { texto: 'Notas', seleccionado: true },
+    { texto: 'Crear nota', seleccionado: false },
+    { texto: 'Ver nota', seleccionado: false }
+  ];
 
   constructor() {}
 
@@ -22,5 +26,11 @@ export class MisNotasComponent implements OnInit {
 
   consultarNotas(): void {
     
+  }
+
+  mostrarBoton(): void {
+   this.secciones.push({ texto: 'Ver nota', seleccionado: true });
+    this.secciones[1].seleccionado = false;
+    this.seccionSeleccionada = 'ver nota';
   }
 }
