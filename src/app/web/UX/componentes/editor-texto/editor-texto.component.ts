@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { GeneradorNotas } from 'src/app/web/informacion/interface/notas';
@@ -12,15 +12,27 @@ var htmlToPdfmake = require('html-to-pdfmake');
   styleUrls: ['./editor-texto.component.scss'],
 })
 export class EditorTextoComponent implements OnInit {
+  /**
+   * @Entrada html: está variable contiene el html correspondiente al contenido del subtema:
+   *                texto, imagenes, hiperviculos, etc.
+   */
+  @Input() html: string = '';
+
+  /**
+   * @Salida infoPDF: Variable que contiene la información del subtema en formato de html y pdf
+   */
   @Output() infoPDF = new EventEmitter<GeneradorNotas>();
 
-  formText: FormControl = new FormControl(
-    '<p><img src="data:image/jpeg;base64,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"></p><p>fcdsefvsdfvsdgvfds<strong>gvdsvdsvsdv</strong></p>'
-  );
+  /**
+   * @Variable formText: Guarda el contenido del subtema en formato html
+   */
+  formText: FormControl = new FormControl();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formText.setValue(this.html);
+  }
 
   // Método para generar PDF
   generarPdf(): void {
@@ -31,9 +43,9 @@ export class EditorTextoComponent implements OnInit {
     // Emite datos hacia el padre
     let informacion: GeneradorNotas = {
       base64: '',
-      html: this.formText.value
-    }
-    
+      html: this.formText.value,
+    };
+
     pdf.getBase64((data) => {
       informacion.base64 = data;
       this.infoPDF.emit(informacion);
@@ -41,6 +53,8 @@ export class EditorTextoComponent implements OnInit {
 
     // Se abre el PDF en otra ventana
     pdf.open();
+
+    this.formText.reset();
   }
 
   // Método para visualizar el PDF sin guardarlo

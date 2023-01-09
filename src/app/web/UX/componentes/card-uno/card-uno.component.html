@@ -1,4 +1,4 @@
-<div class="card-uno cursor-pointer">
+<div class="card-uno cursor-pointer" (click)="clickCard()">
   <div class="card-uno__icono">
     <div class="card-uno__icono--contenedor">
       <span nz-icon nzType="form" nzTheme="outline"></span>
@@ -7,58 +7,6 @@
   <div class="card-uno__informacion">
     <div class="card-uno__informacion--titulo">
       <p>{{tema}}</p>
-    </div>
-    <div class="card-uno__informacion--archivo">
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'xml'"
-        nz-icon
-        nzType="file-excel"
-        nzTheme="outline"
-      ></span>
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'jpg'"
-        nz-icon
-        nzType="file-image"
-        nzTheme="outline"
-      ></span>
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'pdf'"
-        nz-icon
-        nzType="file-pdf"
-        nzTheme="outline"
-      ></span>
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'pptx'"
-        nz-icon
-        nzType="file-ppt"
-        nzTheme="outline"
-      ></span>
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'doc'"
-        nz-icon
-        nzType="file-word"
-        nzTheme="outline"
-      ></span>
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'txt'"
-        nz-icon
-        nzType="file-text"
-        nzTheme="outline"
-      ></span>
-      <span
-        class="card-uno__informacion--archivo-icono"
-        *ngIf="tipoArchivo === 'nada'"
-        nz-icon
-        nzType="exclamation-circle"
-        nzTheme="outline"
-      ></span>
-      <p>{{ nombreArchivo }}</p>
     </div>
   </div>
 </div>

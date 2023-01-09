@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { Nota } from "../../interface/notas";
-import { guardarNota } from "./nota.actions";
+import { ConsultaSubtemasNota } from "../../interface/subtemas";
+import { guardarNota, guardarNotaSubtemas } from "./nota.actions";
 
 
 const estadoInicial: Nota = {
@@ -8,7 +9,9 @@ const estadoInicial: Nota = {
     idSubarea: 0,
     idUsuario: 0,
     tema: '',
-    identificador: ''
+    identificador: '',
+    id: 0,
+    notaSubtemas: {} as ConsultaSubtemasNota
 }
 
 const notaReducer = createReducer(
@@ -17,6 +20,12 @@ const notaReducer = createReducer(
         return {
             ...state,
             ...nota
+        };
+    }),
+    on(guardarNotaSubtemas, (state, { notaSubtemas }) => {
+        return {
+            ...state,
+            notaSubtemas: notaSubtemas
         };
     }),
 )

@@ -1,1 +1,35 @@
-<h2>{{nota.tema}}</h2>
+<div class="nota">
+  <div class="nota__cabecera">
+    <h2>{{ nota.nota.tema }}</h2>
+  </div>
+  <div class="nota_subtemas">
+    <nz-collapse>
+      <nz-collapse-panel
+        *ngFor="let subtema of nota.subtemas"
+        [nzHeader]="subtema.subtema"
+      >
+        <app-editor-texto [html]="subtema.html"></app-editor-texto>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+  <div class="nota__crear-subtema">
+    <h4>Crear subtema</h4>
+    <form [formGroup]="subtemaForm">
+      <nz-form-control nzErrorTip="Ingresa un subtema!">
+        <nz-input-group nzPrefixIcon="file-text">
+          <input
+            nz-input
+            type="text"
+            placeholder="Subtema"
+            formControlName="subtema"
+            (ngModelChange)="habilitarEditor()"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </form>
+    <app-editor-texto
+      *ngIf="editorMostrar"
+      (infoPDF)="guardarSubtema($event)"
+    ></app-editor-texto>
+  </div>
+</div>

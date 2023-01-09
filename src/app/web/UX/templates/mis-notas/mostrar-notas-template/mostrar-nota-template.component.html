@@ -1,10 +1,7 @@
 <div class="notas">
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
-    <app-card-uno></app-card-uno>
+    <app-card-uno *ngFor="let nota of notas"
+    [idNota]="nota.id"
+    [tema]="nota.tema"
+    (infoNota)="clickCard($event)"
+    ></app-card-uno>
 </div>

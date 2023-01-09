@@ -10,7 +10,9 @@
       class="notas__secciones-contenido__mostrar"
       *ngIf="seccionSeleccionada === 'notas'"
     >
-      <app-mostrar-nota-template></app-mostrar-nota-template>
+      <app-mostrar-nota-template
+        (verNota)="mostrarBoton()"
+      ></app-mostrar-nota-template>
     </div>
     <div
       class="notas__secciones-contenido__crear"

@@ -1,11 +1,14 @@
 import { InformacionFecha } from "./httpService";
+import { ConsultaSubtemasNota } from "./subtemas";
 
 export interface Nota {
+    id: number;
     idAreaConocimiento: number;
     idSubarea: number;
     idUsuario: number;
     tema: string;
     identificador: string;
+    notaSubtemas: ConsultaSubtemasNota;
 }
 
 export interface NotasConsulta {
@@ -29,4 +32,9 @@ export interface NotasConponentInterface {
 export interface GeneradorNotas {
     base64: string;
     html: string;
+}
+
+export interface NotaCard {
+    idNota: number;
+    tema: string;
 }

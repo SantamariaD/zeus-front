@@ -17,4 +17,10 @@ export class NotasService {
     );
   }
 
+  consultarNotas(idUsuario: number): Observable<HttpClientServiceInterface<Array<NotasConsulta>>> {
+    return this.http.get<HttpClientServiceInterface<Array<NotasConsulta>>>(
+      `/notas/consultar/notas-usuario/${idUsuario}`
+    );
+  }
+
 }

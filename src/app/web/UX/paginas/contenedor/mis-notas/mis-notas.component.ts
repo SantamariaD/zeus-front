@@ -11,25 +11,24 @@ export class MisNotasComponent implements OnInit {
   secciones = [
     { texto: 'Notas', seleccionado: true },
     { texto: 'Crear nota', seleccionado: false },
-    { texto: 'Ver nota', seleccionado: false }
   ];
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.consultarNotas();
-  }
+  ngOnInit(): void {}
 
   seleccionadoClick(seleccionado: string): void {
     this.seccionSeleccionada = seleccionado.toLowerCase();
   }
 
-  consultarNotas(): void {
-    
-  }
-
   mostrarBoton(): void {
-   this.secciones.push({ texto: 'Ver nota', seleccionado: true });
+    if (this.secciones.length <= 2) {
+      this.secciones.push({ texto: 'Ver nota', seleccionado: true });
+    } else if (this.secciones.length > 2) {
+      this.secciones[2].seleccionado = true;
+    }
+
+    this.secciones[0].seleccionado = false;
     this.secciones[1].seleccionado = false;
     this.seccionSeleccionada = 'ver nota';
   }

@@ -8,6 +8,7 @@ import {
   Nota,
   NotasConsulta,
 } from 'src/app/web/informacion/interface/notas';
+import { ConsultaSubtemasNota } from 'src/app/web/informacion/interface/subtemas';
 import { AreasService } from 'src/app/web/informacion/servicios/areas/areas.service';
 import { NotasService } from 'src/app/web/informacion/servicios/notas/notas.service';
 import { guardarNota } from 'src/app/web/informacion/state/nota/nota.actions';
@@ -95,6 +96,8 @@ export class CrearNotaTemplateComponent implements OnInit {
               idUsuario: respuestaNota.payload.id,
               tema: respuestaNota.payload.tema,
               identificador: respuestaNota.payload.identificador,
+              id: respuestaNota.payload.id,
+              notaSubtemas: {} as ConsultaSubtemasNota
             },
           })
         );

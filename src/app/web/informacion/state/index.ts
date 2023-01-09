@@ -28,8 +28,11 @@ export const selectCargandoPeticion = createFeatureSelector<CargandoPeticionInte
 // Login
 export const selectLoginPeticion = createFeatureSelector<UsuarioInterface>('login');
 
-// NoTA
+// Nota
 export const selectNota = createFeatureSelector<Nota>('nota');
+
+// Nota subtemas
+export const selectNotaSubtemas = createFeatureSelector<Nota>('nota');
 
 
 
@@ -49,4 +52,11 @@ export const selectBanderaLoginPeticion = createSelector(
 export const selectNotaInformacion = createSelector(
   selectNota,
   (state: Nota) => state
+); 
+
+
+// Nota
+export const selectNotaSubtemasInformacion = createSelector(
+  selectNotaSubtemas,
+  (state: Nota) => state.notaSubtemas
 ); 

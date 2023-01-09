@@ -4,11 +4,16 @@ export interface HttpClientServiceInterface<T> {
   payload: T;
 }
 
+export interface HttpClientServiceInterfaceNoPayload {
+  code: number;
+  message: string;
+}
+
 export interface CargandoPeticionInterface {
   cargandoPeticion: boolean;
 }
 
 export interface InformacionFecha {
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
