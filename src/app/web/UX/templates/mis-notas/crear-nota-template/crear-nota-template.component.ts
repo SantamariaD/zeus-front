@@ -20,6 +20,9 @@ import { MensajesAdministrador } from '../../../componentes/feedback/mensajes/me
   styleUrls: ['./crear-nota-template.component.scss'],
 })
 export class CrearNotaTemplateComponent implements OnInit {
+  /**
+   * @Salida botonGuardar: emite un boolean en true en caso de que se guarde la nota
+   */
   @Output() botonGuardar = new EventEmitter<boolean>();
   habilitarSubarea = false;
   habilitarBoton = false;

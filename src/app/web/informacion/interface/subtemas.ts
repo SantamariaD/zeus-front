@@ -20,9 +20,7 @@ export interface ConsultaSubtemasNota {
     nota: {
         id: number;
         identificador: string;
-        area: string;
-        subarea: string;
-        tema: string;
+        
         created_at: string;
     },
     subtemas: Array<SubtemaConsulta>;
