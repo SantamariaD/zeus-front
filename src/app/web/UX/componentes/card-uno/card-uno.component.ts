@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as moment from 'moment';
 import { NotaCard } from 'src/app/web/informacion/interface/notas';
 
 @Component({
@@ -43,41 +44,55 @@ export class CardUnoComponent implements OnInit {
   @Input() leida: number = 0;
 
   /**
-  *  @salida infoNota: Esta variable indica el evento click de la card mandando el objeto NotaCard
-  * 
-  */
+   *  @salida infoNota: Esta variable indica el evento click de la card mandando el objeto NotaCard
+   *
+   */
   @Output() infoNota = new EventEmitter<NotaCard>();
 
   /**
    *  @variable notaCard: Esta variable contiene la información del tema en la card
-   * 
+   *
    */
   notaCard: NotaCard = {} as NotaCard;
 
   /**
    *  @variable rutaImagen: Ruta de la imagen que se mostrara en la miniatura de la nota
-   * 
+   *
    */
   rutaImagen: string = '';
 
   /**
    *  @variable username: Nombre del usuario
-   * 
+   *
    */
   username: string = '';
 
-  constructor() { }
+  /**
+   *  @variable fechaFormat: NFecha formateada en la que se creo la nota
+   *
+   */
+  fechaFormat: any = '';
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.rutaImagen = !localStorage.getItem('imagen') ? '' : './assets/imagenes/user.png';
+    var moments = require('moment-timezone');
+    this.rutaImagen = !localStorage.getItem('imagen')
+      ? ''
+      : './assets/imagenes/user.png';
     this.username = localStorage.getItem('username') as string;
+    moment.locale('es-mx');
+    const fecha = new Date(this.creada);
+    this.fechaFormat = moment(
+      moments(fecha).tz('America/Mexico_City')
+    ).fromNow();
   }
 
   clickCard(): void {
     this.notaCard = {
       idNota: this.idNota,
-      tema: this.tema
-    }
+      tema: this.tema,
+    };
 
     this.infoNota.emit(this.notaCard);
   }
