@@ -9,6 +9,7 @@ import { ConsultaSubtemasNota } from 'src/app/web/informacion/interface/subtemas
 import { NotasService } from 'src/app/web/informacion/servicios/notas/notas.service';
 import { SubtemasService } from 'src/app/web/informacion/servicios/subtemas/subtemas.service';
 import { guardarNotaSubtemas } from 'src/app/web/informacion/state/nota/nota.actions';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mostrar-nota-template',
@@ -25,6 +26,11 @@ export class MostrarNotaTemplateComponent implements OnInit {
    * @Variable notas: Contiene la informción de todas las notas generadas por el usuario
    */
   notas: Array<NotasConsulta> = [];
+
+  /**
+   * @Variable urlBase: url base para traer imagenes de las notas desde la base
+   */
+  urlBase = environment.urls.backDevelop+'/notas/consultar/nota/imagen/';
 
   constructor(
     private notasService: NotasService,

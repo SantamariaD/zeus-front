@@ -1,54 +1,60 @@
 @import "../../../../../styles.scss";
 
+
 .card-uno {
-  margin: 5px;
-  width: 270px;
-  height: 200px;
-  padding: 10px;
-  border: $borde-general;
-  @include shadows(modal);
+  width: 290px;
+  margin-bottom: 20px;
   &:hover {
     transform: scale(1.05);
   }
-  &__icono--contenedor {
-    width: 70px;
-    height: 70px;
-    border: 1px solid $color-brand-primary;
-    font-size: 30px;
-    color: $color-brand-primary;
-    text-align: center;
-    border-radius: 50%;
-    padding-top: 2px;
-    margin: 10px auto;
+
+  &__imagen,
+  &__imagen img {
+    width: 290px;
+    height: 150px;
+    margin: 0px auto;
+    border-radius: 16px 16px 16px 16px;
+    -moz-border-radius: 16px 16px 16px 16px;
+    -webkit-border-radius: 16px 16px 16px 16px;
+    border: $borde-general;
   }
-  &__informacion--titulo p {
-    display: block;
-    display: -webkit-box;
-    text-align: start;
-    line-height: 1;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    width: 95%;
-    height: 32px;
-    font-size: 15px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: rgb(140, 140, 140);
-    font-weight: 700;
-  }
-  &__informacion--archivo {
-    display: flex;
-    margin-top: 5px;
-    & p {
-        margin-top: 4px;
-        margin-left: 5px;
-        font-size: 12px;
+
+  &__informacion {
+    width: 290px;
+    height: 130px;
+    margin: 0px auto;
+    padding: 10px;
+    &--titulo p {
+      display: block;
+      display: -webkit-box;
+      text-align: start;
+      line-height: 1;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      width: 95%;
+      height: 32px;
+      font-size: 15px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-weight: 700;
+    }
+
+    &--usuario {
+      display: flex;
+      height: 45px;
+      overflow: hidden;
+      &--imagen,
+      &--imagen img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      &--username {
+        margin-left: 10px;
         color: rgb(140, 140, 140);
-        font-weight: 100;
+        font-weight: 700;
+      }
     }
-    &-icono {
-      color: $danger;
-      font-size: 25px;
-    }
+
   }
 }

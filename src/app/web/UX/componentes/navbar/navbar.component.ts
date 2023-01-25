@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem('token');
         localStorage.removeItem('rol');
         localStorage.removeItem('username');
+        localStorage.removeItem('id');
+        localStorage.removeItem('imagen');
         this.router.navigate(['/login']);
       },
       error: (error) => console.log(error),

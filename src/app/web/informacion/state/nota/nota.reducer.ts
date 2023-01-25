@@ -6,7 +6,7 @@ import { guardarNota, guardarNotaSubtemas } from "./nota.actions";
 
 const estadoInicial: Nota = {
     idAreaConocimiento: 0,
-    idSubarea: 0,
+    imagen: '',
     idUsuario: 0,
     tema: '',
     identificador: '',

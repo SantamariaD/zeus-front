@@ -42,7 +42,19 @@
           type="text"
           placeholder="Tema"
           formControlName="tema"
-          (ngModelChange)="habilitarBotonGuardar()"
+          (ngModelChange)="habilitarImagen()"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group nzPrefixIcon="file">
+        <input
+          nz-input
+          type="file"
+          [disabled]="habilitarArchivo"
+          (change)="habilitarBotonGuardar($event)"
         />
       </nz-input-group>
     </nz-form-control>

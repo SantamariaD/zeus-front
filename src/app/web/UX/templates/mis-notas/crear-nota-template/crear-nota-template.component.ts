@@ -3,11 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Areas, Subareas } from 'src/app/web/informacion/interface/areas';
 import { HttpClientServiceInterface } from 'src/app/web/informacion/interface/httpService';
-import {
-  GeneradorNotas,
-  Nota,
-  NotasConsulta,
-} from 'src/app/web/informacion/interface/notas';
+import { NotasConsulta } from 'src/app/web/informacion/interface/notas';
 import { ConsultaSubtemasNota } from 'src/app/web/informacion/interface/subtemas';
 import { AreasService } from 'src/app/web/informacion/servicios/areas/areas.service';
 import { NotasService } from 'src/app/web/informacion/servicios/notas/notas.service';
@@ -24,17 +20,46 @@ export class CrearNotaTemplateComponent implements OnInit {
    * @Salida botonGuardar: emite un boolean en true en caso de que se guarde la nota
    */
   @Output() botonGuardar = new EventEmitter<boolean>();
+
+  /**
+   * @variable habilitarSubarea: Habilita el campo de subarea del formulario
+   */
   habilitarSubarea = false;
+
+  /**
+   * @variable habilitarBoton: Habilita el boton de enviado
+   */
   habilitarBoton = false;
+
+  /**
+   * @variable habilitarArchivo: Habilita el input de archivo
+   */
+  habilitarArchivo = true;
+
+  /**
+   * @variable areas: Arreglo que contiene las áreas del select
+   */
   areas: Array<Areas> = [];
+
+  /**
+   * @variable subareas: Arreglo que contiene las subareas para el select
+   */
   subareas: Array<Subareas> = [];
-  idSubarea = null;
+
+  /**
+   * @formulario notaForm: Formulario que captura los datos ingresados por el front
+   */
   notaForm: FormGroup = new FormGroup({
-    idAreaConocimiento: new FormControl('', [Validators.required]),
+    idAreaConocimiento: new FormControl(0, [Validators.required]),
     idSubarea: new FormControl('', [Validators.required]),
     tema: new FormControl({ value: '', disabled: true }, Validators.required),
     idUsuario: new FormControl('', [Validators.required]),
   });
+
+  /**
+   * @variable notaFormData: Formulario que se envíara al back tipo form-data ya que contiene un archivo
+   */
+  notaFormData = new FormData();
 
   constructor(
     private notasService: NotasService,
@@ -67,9 +92,22 @@ export class CrearNotaTemplateComponent implements OnInit {
     this.notaForm.get('tema')?.enable();
   }
 
+  // Método para habilitar imagen
+  habilitarImagen(): void {
+    this.habilitarArchivo = false;
+  }
+
   // Método para habilitar boton guardar
-  habilitarBotonGuardar(): void {
-    this.habilitarBoton = this.notaForm.value.tema ? true : false;
+  habilitarBotonGuardar(event: any): void {
+    this.habilitarBoton = true;
+    this.notaFormData.append('file', event.target.files[0]);
+    this.notaFormData.append(
+      'idAreaConocimiento',
+      this.notaForm.value.idAreaConocimiento
+    );
+    this.notaFormData.append('idSubarea', this.notaForm.value.idSubarea);
+    this.notaFormData.append('tema', this.notaForm.value.tema);
+    this.notaFormData.append('idUsuario', this.notaForm.value.idUsuario);
   }
 
   // Método para traer las áreas de conocimiento
@@ -89,18 +127,18 @@ export class CrearNotaTemplateComponent implements OnInit {
   // Método para guardar nota
   guardarNota(): void {
     this.notasService
-      .guardarNota(this.notaForm.value)
+      .guardarNota(this.notaFormData)
       .subscribe((respuestaNota: HttpClientServiceInterface<NotasConsulta>) => {
         this.store.dispatch(
           guardarNota({
             nota: {
-              idAreaConocimiento: respuestaNota.payload.id_area_conocimiento,
-              idSubarea: respuestaNota.payload.id_subarea,
+              idAreaConocimiento: respuestaNota.payload.area_id,
               idUsuario: respuestaNota.payload.id,
               tema: respuestaNota.payload.tema,
-              identificador: respuestaNota.payload.identificador,
+              imagen: respuestaNota.payload.imagen,
+              identificador: respuestaNota.payload.uuid,
               id: respuestaNota.payload.id,
-              notaSubtemas: {} as ConsultaSubtemasNota
+              notaSubtemas: {} as ConsultaSubtemasNota,
             },
           })
         );

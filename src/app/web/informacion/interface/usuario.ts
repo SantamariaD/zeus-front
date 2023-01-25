@@ -5,5 +5,6 @@ export interface UsuarioInterface {
     email: string;
     rol: string;
     login: boolean;
+    imagen: string;
     email_verified_at?: boolean;
 }

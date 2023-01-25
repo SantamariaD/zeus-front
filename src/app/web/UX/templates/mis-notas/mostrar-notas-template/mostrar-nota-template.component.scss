@@ -1,7 +1,9 @@
 .notas {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
-    width: 100%;
+    width: 90%;
     margin: 30px auto;
+    &__card {
+        margin-right: 20px;
+    }
 }

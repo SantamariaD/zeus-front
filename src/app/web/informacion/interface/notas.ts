@@ -2,22 +2,24 @@ import { InformacionFecha } from "./httpService";
 import { ConsultaSubtemasNota } from "./subtemas";
 
 export interface Nota {
-    id: number;
+    id?: number;
     idAreaConocimiento: number;
-    idSubarea: number;
     idUsuario: number;
     tema: string;
     identificador: string;
+    imagen: string;
     notaSubtemas: ConsultaSubtemasNota;
 }
 
 export interface NotasConsulta {
     id: number;
-    identificador: string;
-    id_user: number;
-    id_area_conocimiento: number;
-    id_subarea: number;
+    uuid: string;
+    user_id: number;
+    area_id: number;
+    area: string;
     tema: string;
+    imagen: string;
+    leido: number;
     created_at: string;
     updated_at: string;
 }

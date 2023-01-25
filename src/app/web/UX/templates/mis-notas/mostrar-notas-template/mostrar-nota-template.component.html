@@ -1,7 +1,22 @@
 <div class="notas">
     <app-card-uno *ngFor="let nota of notas"
+    class="notas__card"
     [idNota]="nota.id"
     [tema]="nota.tema"
+    [area]="nota.area"
+    [leida]="nota.leido"
+    [ruta]="urlBase+nota.user_id+'/'+nota.imagen"
+    [creada]="nota.created_at"
+    (infoNota)="clickCard($event)"
+    ></app-card-uno>
+    <app-card-uno *ngFor="let nota of notas"
+    class="notas__card"
+    [idNota]="nota.id"
+    [tema]="nota.tema"
+    [area]="nota.area"
+    [leida]="nota.leido"
+    [ruta]="urlBase+nota.user_id+'/'+nota.imagen"
+    [creada]="nota.created_at"
     (infoNota)="clickCard($event)"
     ></app-card-uno>
 </div>

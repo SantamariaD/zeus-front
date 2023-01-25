@@ -18,26 +18,60 @@ export class CardUnoComponent implements OnInit {
   @Input() idNota: number = 0;
 
   /**
-   *  @entrada tipoArchivo: Esta variable muestra un icono dependiendo el tipo de archivo en caso de existir:
-   *                        * PDF * DOC * XML * TXT * PPTX * JPG, JPEG, TIFF, GIG, PNG
+   *  @entrada area: Área a la que pertenece la nota
    */
-   @Input() tipoArchivo: string = 'pdf';
+  @Input() area: string = '';
 
-   /**
-   *  @salida infoNota: Esta variable indica el evento click de la card mandando el objeto NotaCard
+  /**
+   *  @entrada subarea: subárea a la que pertenece la nota
+   */
+  @Input() subarea: string = '';
+
+  /**
+   * @entrada ruta: Esta ruta obtiene la imagen que se agrega a la card
+   */
+  @Input() ruta: string = '';
+
+  /**
+   * @entrada creada: Fecha en la que se creo la nota
+   */
+  @Input() creada: string = '';
+
+  /**
+   * @entrada leida: Número de veces leida, dato que se da por los usuarios
+   */
+  @Input() leida: number = 0;
+
+  /**
+  *  @salida infoNota: Esta variable indica el evento click de la card mandando el objeto NotaCard
+  * 
+  */
+  @Output() infoNota = new EventEmitter<NotaCard>();
+
+  /**
+   *  @variable notaCard: Esta variable contiene la información del tema en la card
    * 
    */
-   @Output() infoNota = new EventEmitter<NotaCard>();
+  notaCard: NotaCard = {} as NotaCard;
 
-   /**
-    *  @variable notaCard: Esta variable contiene la información del tema en la card
-    * 
-    */
-   notaCard: NotaCard = {} as NotaCard;
+  /**
+   *  @variable rutaImagen: Ruta de la imagen que se mostrara en la miniatura de la nota
+   * 
+   */
+  rutaImagen: string = '';
 
-  constructor() {}
+  /**
+   *  @variable username: Nombre del usuario
+   * 
+   */
+  username: string = '';
 
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void {
+    this.rutaImagen = !localStorage.getItem('imagen') ? '' : './assets/imagenes/user.png';
+    this.username = localStorage.getItem('username') as string;
+  }
 
   clickCard(): void {
     this.notaCard = {

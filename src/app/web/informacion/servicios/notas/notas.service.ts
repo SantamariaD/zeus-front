@@ -10,7 +10,7 @@ import { HttpclientService } from '../httpService/http-service.service';
 export class NotasService {
   constructor(private http: HttpclientService) {}
 
-  guardarNota(nota: Nota): Observable<HttpClientServiceInterface<NotasConsulta>> {
+  guardarNota(nota: any): Observable<HttpClientServiceInterface<NotasConsulta>> {
     return this.http.post<HttpClientServiceInterface<NotasConsulta>>(
       '/notas/crear',
       nota

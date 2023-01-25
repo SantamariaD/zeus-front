@@ -1,12 +1,22 @@
-<div class="card-uno cursor-pointer" (click)="clickCard()">
-  <div class="card-uno__icono">
-    <div class="card-uno__icono--contenedor">
-      <span nz-icon nzType="form" nzTheme="outline"></span>
-    </div>
+<div class="card-uno cursor-pointer">
+  <div class="card-uno__imagen" (click)="clickCard()">
+    <img [src]="ruta" alt="Imagen">
   </div>
-  <div class="card-uno__informacion">
-    <div class="card-uno__informacion--titulo">
+  <div class="card-uno__informacion" (click)="clickCard()">
+    <div class="card-uno__informacion--titulo m-b-10">
       <p>{{tema}}</p>
     </div>
+    <div class="card-uno__informacion--usuario">
+      <div class="card-uno__informacion--usuario--imagen">
+        <img [src]="rutaImagen" alt="imagen usuario">
+      </div>
+      <p class="card-uno__informacion--usuario--username">
+        {{area}} <br>
+        {{username}} · {{creada | date:'dd-MM-yyyy'}}<br>
+      </p>
+    </div>
+    <p class="card-uno__informacion--usuario--username m-t-5">
+      <span nz-icon nzType="star" nzTheme="outline" class="m-r-5"></span> Leida · {{leida}}
+    </p>
   </div>
 </div>

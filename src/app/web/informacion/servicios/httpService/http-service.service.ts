@@ -23,7 +23,6 @@ export class HttpclientService {
     return this.http
       .post<T>(urlBase + url, body || {}, {
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       })
@@ -48,7 +47,6 @@ export class HttpclientService {
     return this.http
       .get<T>(urlBase + url, {
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       })

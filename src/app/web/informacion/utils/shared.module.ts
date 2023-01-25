@@ -32,6 +32,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 @NgModule({
   declarations: [],
@@ -68,8 +69,8 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     NzAvatarModule,
     NzSelectModule,
     NzBadgeModule,
-    NzTabsModule
-    
+    NzTabsModule,
+    NzUploadModule
   ],
   exports: [
     NzMenuModule,
@@ -103,7 +104,8 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     NzAvatarModule,
     NzSelectModule,
     NzBadgeModule,
-    NzTabsModule
+    NzTabsModule,
+    NzUploadModule
   ]
 })
 export class SharedModule { }

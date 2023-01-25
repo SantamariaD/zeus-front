@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
             'username',
             respuestalogin.payload.usuario.username
           );
+          localStorage.setItem(
+            'imagen',
+            respuestalogin.payload.usuario.imagen
+          );
            this.store.dispatch(
             guardarUsuario({ usuario: respuestalogin.payload.usuario })
           );

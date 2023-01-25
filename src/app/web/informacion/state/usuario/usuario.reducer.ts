@@ -9,6 +9,7 @@ const estadoInicial: UsuarioInterface = {
     email: '',
     username: '',
     rol: '',
+    imagen: '',
     login: false
 }
 
