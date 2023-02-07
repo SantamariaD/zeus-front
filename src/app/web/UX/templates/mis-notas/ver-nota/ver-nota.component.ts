@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs';
-import { GeneradorNotas } from 'src/app/web/informacion/interface/notas';
-import { ConsultaSubtemasNota } from 'src/app/web/informacion/interface/subtemas';
-import { SubtemasService } from 'src/app/web/informacion/servicios/subtemas/subtemas.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { Observable, of, Subscription, take } from 'rxjs';
+import { NotasConsulta } from 'src/app/web/informacion/interface/notas';
 import { selectNotaSubtemasInformacion } from 'src/app/web/informacion/state';
+import { environment } from 'src/environments/environment';
+import { FormularioSubtemaComponent } from './formulario-subtema/formulario-subtema.component';
+import { FormularioSubtituloComponent } from './formulario-subtitulo/formulario-subtitulo.component';
 
 @Component({
   selector: 'app-ver-nota',
@@ -16,62 +18,94 @@ export class VerNotaComponent implements OnInit {
   /**
    * @Variable nota: Información de la nota y los subtemas relacionados a está
    */
-  nota: ConsultaSubtemasNota = {} as ConsultaSubtemasNota;
+  nota: NotasConsulta = {} as NotasConsulta;
 
   /**
-   * @Variable editorMostrar: Muestra el editor de texto si el campo subtema esta lleno 
+   * @Variable cardFija: Cuando es true se asigna la clase fixed para la card
    */
-  editorMostrar = false;
+  cardFija = false;
 
   /**
-   * @Formulario subtemaForm: Contiene la información del subtema que se envíara al back
+   * @Variable rutaImagen: ruta para traer la imagen de la nota
    */
-  subtemaForm: FormGroup = new FormGroup({
-    subtema: new FormControl('', [Validators.required]),
-    base64: new FormControl(''),
-    html: new FormControl(''),
-    idNota: new FormControl(''),
-  });
+  rutaImagen = '';
 
-  constructor(private store: Store, private subtemasService: SubtemasService) {}
+  /**
+   * @Variable subscripcionSubtema: escucha el evento de guardar un subtema
+   */
+  subscripcionSubtema: Subscription = Subscription.EMPTY;
+
+  /**
+   * @observable informacionStore$: observable que contiene la información actualizada del store
+   */
+  informacionStore$: Observable<any> = of();
+
+  constructor(private modalService: NzModalService, private store: Store) {}
 
   ngOnInit(): void {
     this.store
       .select(selectNotaSubtemasInformacion)
       .pipe(take(1))
-      .subscribe((nota: ConsultaSubtemasNota) => (this.nota = nota));
-  }
-
-  // Método para guardar el subtema en la base
-  guardarSubtema(texto: GeneradorNotas): void {
-    // Seteo de valores deñ formulario
-    this.subtemaForm.patchValue({
-      base64: texto.base64,
-      html: texto.html,
-      idNota: this.nota.nota.id,
+      .subscribe((nota: NotasConsulta) => (this.nota = nota));
+    this.rutaImagen =
+      environment.urls.backDevelop +
+      '/notas/consultar/nota/imagen/' +
+      localStorage.getItem('id') +
+      '/' +
+      this.nota.imagen;
+    this.informacionStore$ = this.store.select((state) => state);
+    this.informacionStore$.subscribe((store) => {
+      if (store.nota.subtemas.length == this.nota.subtemas.length + 1) {
+        this.nota.subtemas.push(
+          store.nota.subtemas[store.nota.subtemas.length - 1]
+        );
+      }
     });
-
-    this.subtemasService
-      .guardarSubtema(this.subtemaForm.value)
-      .subscribe(() => {
-        // Actualización de los subtemas, reset de formulario e ir hasta arriba
-        this.nota.subtemas.push({
-          base64: this.subtemaForm.value.base65,
-          html: this.subtemaForm.value.html,
-          idNota: this.subtemaForm.value.idNota,
-          subtema: this.subtemaForm.value.subtema,
-        });
-        this.subtemaForm.reset();
-        window.scroll({ 
-          top: 0, 
-          left: 0
-        });
-        this.editorMostrar = false;
-      });
   }
 
-  // Método para mostrar el editor de texto
-  habilitarEditor(): void {
-    this.editorMostrar = this.subtemaForm.value.subtema ? true : false;
+  // Metodo para capturar el evento de scroll
+  @HostListener('window:scroll', ['$event'])
+  windowsScroll(scroll: any) {
+    if (scroll.srcElement.children[0].scrollTop > 100) {
+      this.cardFija = true;
+    } else {
+      this.cardFija = false;
+    }
+  }
+
+  // Método para abrir modal para agregar subtitulo
+  formularioSubtitulo(): void {
+    this.modalService.create({
+      nzTitle: 'Agregar un subtitulo',
+      nzContent: FormularioSubtituloComponent,
+      nzMaskClosable: false,
+      nzOkText: null,
+      nzCancelText: 'Cerrar',
+      nzClosable: false,
+    });
+  }
+
+  // Método para abrir modal para agregar subtitulo
+  formularioSubtema(): void {
+    this.modalService.create({
+      nzTitle: 'Agregar un subtema',
+      nzContent: FormularioSubtemaComponent,
+      nzMaskClosable: false,
+      nzOkText: null,
+      nzCancelText: 'Cerrar',
+    });
+  }
+
+  // Método que contiene la información de los elementos que se arrastran y suelta
+  soltar(soltarEvento: CdkDragDrop<string[]>): void {
+    moveItemInArray(
+      this.nota.subtemas,
+      soltarEvento.previousIndex,
+      soltarEvento.currentIndex
+    );
+    if (soltarEvento.previousIndex !== soltarEvento.currentIndex) {
+      
+    console.log(soltarEvento);
+    }
   }
 }

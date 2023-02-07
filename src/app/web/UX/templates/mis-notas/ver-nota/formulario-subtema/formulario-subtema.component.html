@@ -1,0 +1,28 @@
+<form nz-form [formGroup]="subtemaForm" class="form-nota">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Ingresa un subtema!">
+      <input
+        class="borde-formulario"
+        nz-input
+        type="text"
+        placeholder="Subtema"
+        formControlName="subtema"
+        (ngModelChange)="habilitarGuardar()"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    nz-button
+    class="login-form-button login-form-margin form-nota__boton"
+    [nzType]="'primary'"
+    (click)="guardarSubtema()"
+    *ngIf="!botonCarga"
+    [disabled]="botonGuardarDeshabilitar"
+  >
+    Guardar subtema
+  </button>
+  <button *ngIf="botonCarga" nz-button nzType="primary" nzLoading>
+    <span nz-icon nzType="poweroff"></span>
+    Guardando
+  </button>
+</form>

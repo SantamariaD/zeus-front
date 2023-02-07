@@ -6,10 +6,30 @@ import { MostrarNotaTemplateComponent } from './mis-notas/mostrar-notas-template
 import { ComponentesModule } from '../componentes/componentes.module';
 import { SharedModule } from '../../informacion/utils/shared.module';
 import { VerNotaComponent } from './mis-notas/ver-nota/ver-nota.component';
+import { FormularioSubtituloComponent } from './mis-notas/ver-nota/formulario-subtitulo/formulario-subtitulo.component';
+import { FormularioSubtemaComponent } from './mis-notas/ver-nota/formulario-subtema/formulario-subtema.component';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @NgModule({
-  declarations: [CrearNotaTemplateComponent, MostrarNotaTemplateComponent, VerNotaComponent],
-  imports: [CommonModule, ComponentesModule, FormsModule, ReactiveFormsModule, SharedModule],
-  exports: [CrearNotaTemplateComponent, MostrarNotaTemplateComponent, VerNotaComponent],
+  declarations: [
+    CrearNotaTemplateComponent,
+    MostrarNotaTemplateComponent,
+    VerNotaComponent,
+    FormularioSubtituloComponent,
+    FormularioSubtemaComponent,
+  ],
+  imports: [
+    CommonModule,
+    ComponentesModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    DragDropModule
+  ],
+  exports: [
+    CrearNotaTemplateComponent,
+    MostrarNotaTemplateComponent,
+    VerNotaComponent,
+  ],
 })
 export class TemplatesModule {}

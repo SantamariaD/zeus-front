@@ -1,10 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { Nota } from '../../interface/notas';
-import { ConsultaSubtemasNota } from '../../interface/subtemas';
+import { Nota, NotasConsulta } from '../../interface/notas';
+import { ConsultaSubtemasNota, SubtituloConsulta } from '../../interface/subtemas';
 
 const GUARDAR_NOTA = '[Nota] Guarda la información de la nota';
 
 const GUARDAR_NOTA_SUBTEMAS = '[Nota] Guarda la información de los subtemas de la nota';
+
+const GUARDAR__SUBTEMA = '[Nota] Guarda subtema creado por el usuario';
+
+const GUARDAR__SUBTITULO = '[Nota] Guarda subtitulo creado por el usuario';
 
 export const guardarNota = createAction(
     GUARDAR_NOTA,
@@ -13,5 +17,16 @@ export const guardarNota = createAction(
 
 export const guardarNotaSubtemas = createAction(
   GUARDAR_NOTA_SUBTEMAS,
-props<{ notaSubtemas: ConsultaSubtemasNota }>()
+props<{ notaInformacion: NotasConsulta }>()
 );
+
+export const guardarSubtemaUsuario = createAction(
+  GUARDAR__SUBTEMA,
+props<{ subtema: ConsultaSubtemasNota }>()
+);
+
+export const guardarSubtituloUsuario = createAction(
+  GUARDAR__SUBTITULO,
+props<{ subtitulo: SubtituloConsulta }>()
+);
+

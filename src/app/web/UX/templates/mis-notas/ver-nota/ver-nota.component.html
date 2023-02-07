@@ -1,35 +1,101 @@
-<div class="nota">
-  <div class="nota__cabecera">
-  
-  </div>
-  <div class="nota_subtemas">
-    <nz-collapse>
+<div class="nota" (window:scroll)="windowsScroll($event)">
+  <div class="nota__subtemas" *ngIf="nota.subtemas.length > 0">
+    <p class="nota__subtemas--cabecera">Subtemas</p>
+    <nz-collapse
+      cdkDropList
+      (cdkDropListDropped)="soltar($event)"
+      class="nota__subtemas--list"
+    >
       <nz-collapse-panel
-        *ngFor="let subtema of nota.subtemas"
+        *ngFor="let subtema of nota.subtemas; let i = index"
         [nzHeader]="subtema.subtema"
+        class="nota__subtemas--collapse"
+        cdkDrag
       >
-        <app-editor-texto [html]="subtema.html"></app-editor-texto>
+        <p
+          class="nota__subtemas--subtitulo cursor-pointer m-b-10"
+          *ngFor="let subtitulo of subtema.subtitulo; let j = index"
+        >
+          <span nz-icon nzType="borderless-table" nzTheme="outline"></span>
+          {{ subtitulo.subtitulo }}
+        </p>
       </nz-collapse-panel>
     </nz-collapse>
   </div>
-  <div class="nota__crear-subtema">
-    <h4>Crear subtema</h4>
-    <form [formGroup]="subtemaForm">
-      <nz-form-control nzErrorTip="Ingresa un subtema!">
-        <nz-input-group nzPrefixIcon="file-text">
-          <input
-            nz-input
-            type="text"
-            placeholder="Subtema"
-            formControlName="subtema"
-            (ngModelChange)="habilitarEditor()"
-          />
-        </nz-input-group>
-      </nz-form-control>
-    </form>
-    <app-editor-texto
-      *ngIf="editorMostrar"
-      (infoPDF)="guardarSubtema($event)"
-    ></app-editor-texto>
+  <div class="notas__sin-subtemas" *ngIf="nota.subtemas.length < 1">
+    <nz-result nzStatus="info" nzTitle="No hay subtemas en la nota">
+      <div nz-result-extra></div>
+    </nz-result>
+  </div>
+  <div class="nota__cabecera">
+    <div
+      [ngClass]="{ 'nota__cabecera--fijada': cardFija }"
+      class="nota__cabecera--card"
+    >
+      <div class="nota__cabecera--card__imagen">
+        <img [src]="rutaImagen" alt="no hay imagen" />
+      </div>
+      <div class="nota__cabecera--card__contenido">
+        <p class="nota__cabecera--card__contenido--titulo texto-negritas">
+          {{ nota.tema }}
+        </p>
+        <p class="nota__cabecera--card__contenido--area">
+          <span>{{ nota.area }}</span> · <span>{{ nota.subarea }}</span>
+        </p>
+        <br />
+        <br />
+        <div
+          class="nota__cabecera--card__contenido--leidas m-t-5 cursor-pointer"
+        >
+          <p>
+            <span nz-icon nzType="star" nzTheme="outline" class="m-r-5"></span>
+            Leida · {{ nota.leido }}
+          </p>
+        </div>
+        <div
+          class="nota__cabecera--card__contenido--agregar m-t-10 cursor-pointer"
+        >
+          <div
+            (click)="formularioSubtema()"
+            class="nota__cabecera--card__contenido--agregar--subtema"
+          >
+            <p>
+              <span nz-icon nzType="plus" nzTheme="outline"></span>
+              Agregar subtema
+            </p>
+          </div>
+          <div
+            (click)="formularioSubtitulo()"
+            class="nota__cabecera--card__contenido--agregar--subtitulo"
+          >
+            <p>
+              <span nz-icon nzType="plus" nzTheme="outline"></span>
+              Agregar subtitulo
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- <div class="nota__crear--subtema">
+  <h4>Crear subtema</h4>
+  <form [formGroup]="subtemaForm">
+    <nz-form-control nzErrorTip="Ingresa un subtema!">
+      <nz-input-group nzPrefixIcon="file-text">
+        <input
+          nz-input
+          type="text"
+          placeholder="Subtema"
+          formControlName="subtema"
+          (ngModelChange)="habilitarEditor()"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </form>
+  <app-editor-texto
+    *ngIf="editorMostrar"
+    (infoPDF)="guardarSubtema($event)"
+  ></app-editor-texto>
+</div> -->

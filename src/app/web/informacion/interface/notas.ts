@@ -1,4 +1,3 @@
-import { InformacionFecha } from "./httpService";
 import { ConsultaSubtemasNota } from "./subtemas";
 
 export interface Nota {
@@ -8,7 +7,7 @@ export interface Nota {
     tema: string;
     identificador: string;
     imagen: string;
-    notaSubtemas: ConsultaSubtemasNota;
+    notaSubtemas: NotasConsulta;
 }
 
 export interface NotasConsulta {
@@ -16,12 +15,15 @@ export interface NotasConsulta {
     uuid: string;
     user_id: number;
     area_id: number;
+    subarea_id: number;
+    subarea: string;
     area: string;
     tema: string;
     imagen: string;
     leido: number;
     created_at: string;
     updated_at: string;
+    subtemas: Array<ConsultaSubtemasNota>;
 }
 
 export interface NotasConponentInterface {

@@ -33,6 +33,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 @NgModule({
   declarations: [],
@@ -70,7 +71,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NzSelectModule,
     NzBadgeModule,
     NzTabsModule,
-    NzUploadModule
+    NzUploadModule,
+    NzResultModule 
   ],
   exports: [
     NzMenuModule,
@@ -105,7 +107,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NzSelectModule,
     NzBadgeModule,
     NzTabsModule,
-    NzUploadModule
+    NzUploadModule,
+    NzResultModule
   ]
 })
 export class SharedModule { }

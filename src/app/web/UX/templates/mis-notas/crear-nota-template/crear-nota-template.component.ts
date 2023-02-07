@@ -1,13 +1,18 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { Areas, Subareas } from 'src/app/web/informacion/interface/areas';
 import { HttpClientServiceInterface } from 'src/app/web/informacion/interface/httpService';
 import { NotasConsulta } from 'src/app/web/informacion/interface/notas';
-import { ConsultaSubtemasNota } from 'src/app/web/informacion/interface/subtemas';
 import { AreasService } from 'src/app/web/informacion/servicios/areas/areas.service';
 import { NotasService } from 'src/app/web/informacion/servicios/notas/notas.service';
-import { guardarNota } from 'src/app/web/informacion/state/nota/nota.actions';
+import { selectAreas } from 'src/app/web/informacion/state';
+import {
+  guardarAreas,
+  guardarSubareas,
+} from 'src/app/web/informacion/state/informacionGeneral/informacionGeneral.actions';
+import { guardarNotaUsuario } from 'src/app/web/informacion/state/notas/notas.actions';
 import { MensajesAdministrador } from '../../../componentes/feedback/mensajes/mensajes.service';
 
 @Component({
@@ -69,22 +74,22 @@ export class CrearNotaTemplateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.traerAreas();
+    this.store
+      .select(selectAreas)
+      .pipe(take(1))
+      .subscribe((areas: Array<Areas>) =>
+        areas.length < 1 ? this.traerAreas() : (this.areas = areas)
+      );
   }
 
-  // Método para habilitar select subareas
+  // Método para habilitar select subareas y traer subareas
   habilitarSubareas(): void {
     this.habilitarSubarea = this.notaForm.value.idAreaConocimiento
       ? true
       : false;
 
     // Trae las subáreas con base en el área seleccionada
-    this.areasService
-      .consultarSubareas(this.notaForm.value.idAreaConocimiento)
-      .subscribe(
-        (respuestaAreas: HttpClientServiceInterface<Array<Subareas>>) =>
-          (this.subareas = respuestaAreas.payload)
-      );
+    this.traerSubareas();
   }
 
   // Método para habilitar input tema
@@ -118,9 +123,23 @@ export class CrearNotaTemplateComponent implements OnInit {
 
     this.areasService
       .consultarAreas()
+      .subscribe((respuestaAreas: HttpClientServiceInterface<Array<Areas>>) => {
+        this.store.dispatch(guardarAreas({ areas: respuestaAreas.payload }));
+        this.areas = respuestaAreas.payload;
+      });
+  }
+
+  // Método para traer subareas
+  traerSubareas(): void {
+    this.areasService
+      .consultarSubareas(this.notaForm.value.idAreaConocimiento)
       .subscribe(
-        (respuestaAreas: HttpClientServiceInterface<Array<Areas>>) =>
-          (this.areas = respuestaAreas.payload)
+        (respuestaAreas: HttpClientServiceInterface<Array<Subareas>>) => {
+          this.store.dispatch(
+            guardarSubareas({ subareas: respuestaAreas.payload })
+          );
+          this.subareas = respuestaAreas.payload;
+        }
       );
   }
 
@@ -130,17 +149,7 @@ export class CrearNotaTemplateComponent implements OnInit {
       .guardarNota(this.notaFormData)
       .subscribe((respuestaNota: HttpClientServiceInterface<NotasConsulta>) => {
         this.store.dispatch(
-          guardarNota({
-            nota: {
-              idAreaConocimiento: respuestaNota.payload.area_id,
-              idUsuario: respuestaNota.payload.id,
-              tema: respuestaNota.payload.tema,
-              imagen: respuestaNota.payload.imagen,
-              identificador: respuestaNota.payload.uuid,
-              id: respuestaNota.payload.id,
-              notaSubtemas: {} as ConsultaSubtemasNota,
-            },
-          })
+          guardarNotaUsuario({ nota: respuestaNota.payload })
         );
 
         this.mensajesAdministrador.ejecutarMensaje('success', 'Nota guardada');

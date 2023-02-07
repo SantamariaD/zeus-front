@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClientServiceInterface } from '../../interface/httpService';
+import { NotasConsulta } from '../../interface/notas';
 import {
-  HttpClientServiceInterface,
-  HttpClientServiceInterfaceNoPayload,
-} from '../../interface/httpService';
-import { ConsultaSubtemasNota, Subtema, SubtemaConsulta } from '../../interface/subtemas';
+  ConsultaSubtemasNota,
+  SubtemaConsulta,
+} from '../../interface/subtemas';
 import { HttpclientService } from '../httpService/http-service.service';
 
 @Injectable({
@@ -14,11 +15,12 @@ export class SubtemasService {
   constructor(private http: HttpclientService) {}
 
   guardarSubtema(
-    subtema: Subtema
-  ): Observable<HttpClientServiceInterfaceNoPayload> {
-    return this.http.post<HttpClientServiceInterfaceNoPayload>(
+    subtema: any
+  ): Observable<HttpClientServiceInterface<ConsultaSubtemasNota>> {
+    return this.http.post<HttpClientServiceInterface<ConsultaSubtemasNota>>(
       '/subtemas/crear',
-      subtema
+      subtema,
+      false
     );
   }
 
@@ -32,8 +34,8 @@ export class SubtemasService {
 
   consultarSubtemasNota(
     idNota: number
-  ): Observable<HttpClientServiceInterface<ConsultaSubtemasNota>> {
-    return this.http.get<HttpClientServiceInterface<ConsultaSubtemasNota>>(
+  ): Observable<HttpClientServiceInterface<NotasConsulta>> {
+    return this.http.get<HttpClientServiceInterface<NotasConsulta>>(
       `/subtemas/consultar/nota-subtemas/${idNota}`
     );
   }

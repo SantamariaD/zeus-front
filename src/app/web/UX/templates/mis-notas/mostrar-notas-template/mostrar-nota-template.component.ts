@@ -1,14 +1,19 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { HttpClientServiceInterface } from 'src/app/web/informacion/interface/httpService';
 import {
   NotaCard,
   NotasConsulta,
 } from 'src/app/web/informacion/interface/notas';
-import { ConsultaSubtemasNota } from 'src/app/web/informacion/interface/subtemas';
 import { NotasService } from 'src/app/web/informacion/servicios/notas/notas.service';
 import { SubtemasService } from 'src/app/web/informacion/servicios/subtemas/subtemas.service';
-import { guardarNotaSubtemas } from 'src/app/web/informacion/state/nota/nota.actions';
+import { selectNotasConsulta } from 'src/app/web/informacion/state';
+import {
+  guardarNota,
+  guardarNotaSubtemas,
+} from 'src/app/web/informacion/state/nota/nota.actions';
+import { notasUsuarioConsulta } from 'src/app/web/informacion/state/notas/notas.actions';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -30,7 +35,7 @@ export class MostrarNotaTemplateComponent implements OnInit {
   /**
    * @Variable urlBase: url base para traer imagenes de las notas desde la base
    */
-  urlBase = environment.urls.backDevelop+'/notas/consultar/nota/imagen/';
+  urlBase = environment.urls.backDevelop + '/notas/consultar/nota/imagen/';
 
   constructor(
     private notasService: NotasService,
@@ -39,7 +44,12 @@ export class MostrarNotaTemplateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.consultarNotas();
+    this.store
+      .select(selectNotasConsulta)
+      .pipe(take(1))
+      .subscribe((notas: Array<NotasConsulta>) =>
+        notas.length < 1 ? this.consultarNotas() : (this.notas = notas)
+      );
   }
 
   // Método que realiza la consulta de las notas hechas por el usuario
@@ -48,8 +58,12 @@ export class MostrarNotaTemplateComponent implements OnInit {
     this.notasService
       .consultarNotas(idUsuario)
       .subscribe(
-        (respuestaNotas: HttpClientServiceInterface<Array<NotasConsulta>>) =>
-          (this.notas = respuestaNotas.payload)
+        (respuestaNotas: HttpClientServiceInterface<Array<NotasConsulta>>) => {
+          this.store.dispatch(
+            notasUsuarioConsulta({ notas: respuestaNotas.payload })
+          );
+          this.notas = respuestaNotas.payload;
+        }
       );
   }
 
@@ -63,10 +77,10 @@ export class MostrarNotaTemplateComponent implements OnInit {
       .consultarSubtemasNota(nota.idNota)
       .subscribe(
         (
-          respuestaSubtemas: HttpClientServiceInterface<ConsultaSubtemasNota>
+          respuestaSubtemas: HttpClientServiceInterface<NotasConsulta>
         ) => {
           this.store.dispatch(
-            guardarNotaSubtemas({ notaSubtemas: respuestaSubtemas.payload })
+            guardarNotaSubtemas({ notaInformacion: respuestaSubtemas.payload })
           );
           this.verNota.emit(true);
         }

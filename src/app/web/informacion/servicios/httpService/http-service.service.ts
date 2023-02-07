@@ -15,7 +15,7 @@ import {
 export class HttpclientService {
   constructor(private http: HttpClient, private store: Store) {}
 
-  post<T>(url: string, body?: any): Observable<T> {
+  post<T>(url: string, body?: any, spin = true): Observable<T> {
     const urlBase = environment.production
       ? environment.urls.backProduction
       : environment.urls.backDevelop;
@@ -29,20 +29,22 @@ export class HttpclientService {
 
       .pipe(
         finalize(() => {
-          this.store.dispatch(peticionActivaAction());
+          if (spin) this.store.dispatch(peticionActivaAction());
           setTimeout(() => {
-            this.store.dispatch(peticionInactivaAction());
+            if (spin) this.store.dispatch(peticionInactivaAction());
           }, 1000);
         })
       );
   }
 
-  get<T>(url: string): Observable<T> {
+  get<T>(url: string, spin = true): Observable<T> {
     const urlBase = environment.production
       ? environment.urls.backProduction
       : environment.urls.backDevelop;
     const token = localStorage.getItem('token') as string;
-    setTimeout(() => this.store.dispatch(peticionActivaAction()), 0);
+    setTimeout(() => {
+      if (spin) this.store.dispatch(peticionActivaAction());
+    }, 0);
 
     return this.http
       .get<T>(urlBase + url, {
@@ -53,7 +55,29 @@ export class HttpclientService {
       .pipe(
         finalize(() => {
           setTimeout(() => {
-            this.store.dispatch(peticionInactivaAction());
+            if (spin) this.store.dispatch(peticionInactivaAction());
+          }, 1000);
+        })
+      );
+  }
+
+  put<T>(url: string, body?: any, spin = true): Observable<T> {
+    const urlBase = environment.production
+      ? environment.urls.backProduction
+      : environment.urls.backDevelop;
+    const token = localStorage.getItem('token') as string;
+    return this.http
+      .put<T>(urlBase + url, body || {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      .pipe(
+        finalize(() => {
+          if (spin) this.store.dispatch(peticionActivaAction());
+          setTimeout(() => {
+            if (spin) this.store.dispatch(peticionInactivaAction());
           }, 1000);
         })
       );

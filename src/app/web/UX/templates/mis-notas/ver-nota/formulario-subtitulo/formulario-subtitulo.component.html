@@ -1,0 +1,37 @@
+<form nz-form [formGroup]="subtemaForm" class="form-nota">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Ingresa una área!">
+      <nz-select
+        class="form-nota__select borde-formulario"
+        [nzBorderless]="true"
+        formControlName="idSubtema"
+        nzPlaceHolder="Subtema"
+      >
+        <nz-option
+          *ngFor="let subtema of nota.subtemas"
+          [nzValue]="subtema.id"
+          [nzLabel]="subtema.subtema"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Ingresa un subtitulo!">
+      <input
+        class="borde-formulario"
+        nz-input
+        type="text"
+        placeholder="Subtitulo"
+        formControlName="subtitulo"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    nz-button
+    class="login-form-button login-form-margin form-nota__boton"
+    [nzType]="'primary'"
+    (click)="guardarSubtitulo()"
+  >
+    Guardar subtitulo
+  </button>
+</form>

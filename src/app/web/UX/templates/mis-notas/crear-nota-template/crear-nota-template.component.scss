@@ -1,16 +1,48 @@
+.ant-input {
+  border: none;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.ant-input[disabled] {
+  background-color: white;
+  cursor: auto;
+}
+
 .form-nota {
   width: 30%;
   height: 100%;
   margin: 40px auto;
   padding: 50px;
   border: 1px solid rgb(231, 231, 231);
-  -webkit-box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 3px 3px 11px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 11px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 11px -2px rgba(0, 0, 0, 0.75);
   &__app {
     width: 100% !important;
   }
   &__boton {
     width: 100%;
   }
+  &__select {
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+  }
+  &__archivo {
+    border: none;
+    width: 100%;
+    padding: 0px;
+    &--texto {
+      font-size: 11px;
+      color: rgb(140, 140, 140);
+    }
+  }
+}
+
+#botonpersonal {
+  font: caption;
+  -webkit-appearance: button;
+  background: black !important;
+  color: white;
+  border-color: black !important;
+  padding: 7px 10px;
 }
